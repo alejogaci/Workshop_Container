@@ -20,6 +20,8 @@ jobs:
         run: |
           docker build -t alejogaci/workshop-tmcontainer:latest .
           docker images
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push to registry
         run: |
