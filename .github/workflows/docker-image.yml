@@ -1,0 +1,26 @@
+name: Docker Image Build and Push
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        #docker pull vulnerables/web-dvwa:latest
+        run: |
+          docker build -t alejogaci/workshop-tmcontainer:latest .
+          docker images
+
+      - name: Push to registry
+        run: |
+          docker push alejogaci/workshop-tmcontainer:latest
