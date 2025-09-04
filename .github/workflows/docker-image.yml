@@ -23,6 +23,17 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      - name: Download Artifact
+        run: |
+          wget https://cli.artifactscan.cloudone.trendmicro.com/tmas-cli/latest/tmas-cli_Linux_x86_64.tar.gz
+          tar -xzvf tmas-cli_Linux_x86_64.tar.gz
+
+      - name: Scan Artifact
+        env:
+          TMAS_API_KEY: ${{ secrets.TMAS_API_KEY }}
+        run:  |
+          ./tmas scan alejogaci/workshop-tmcontainer:latest - -VMS --saveSBOM > results.json
+
       - name: Push to registry
         run: |
           docker push alejogaci/workshop-tmcontainer:latest
