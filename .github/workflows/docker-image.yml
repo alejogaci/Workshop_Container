@@ -28,7 +28,7 @@ jobs:
           wget https://cli.artifactscan.cloudone.trendmicro.com/tmas-cli/latest/tmas-cli_Linux_x86_64.tar.gz
           tar -xzvf tmas-cli_Linux_x86_64.tar.gz
 
-      - name: Scan Artifact
+      - name: Run Artifact Scab
         env:
           TMAS_API_KEY: ${{ secrets.TMAS_API_KEY }}
         run:  |
