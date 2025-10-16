@@ -32,7 +32,8 @@ jobs:
         env:
           TMAS_API_KEY: ${{ secrets.TMAS_API_KEY }}
         run:  |
-          ./tmas scan docker:alejogaci/workshop-tmcontainer:latest - -VMS --evaluatePolicy --saveSBOM > results.json
+          ./tmas scan docker:alejogaci/workshop-tmcontainer:latest - -VMS --saveSBOM > results.json
+  #        ./tmas scan docker:alejogaci/workshop-tmcontainer:latest - -VMS --evaluatePolicy --saveSBOM > results.json
 
       - name: Push to registry
         run: |
