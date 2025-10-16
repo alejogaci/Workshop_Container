@@ -60,4 +60,4 @@ jobs:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         run: |
           echo "${{ secrets.COSIGN_KEY }}" > cosign.key
-          cosign sign --key cosign.key alejogaci/workshop-tmcontainer:latest
+          cosign sign --key cosign.key --yes --tlog-upload=false alejogaci/workshop-tmcontainer:latest
